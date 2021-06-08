@@ -3,11 +3,15 @@
 
 #include "HASCharacterBase.h"
 
+#include "AbilitySystemComponent.h"
+
 // Sets default values
 AHASCharacterBase::AHASCharacterBase()
 {
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
+
+	AbilitySystemComponent = CreateDefaultSubobject<UAbilitySystemComponent>(TEXT("Ability System Component"));
 
 }
 
@@ -30,5 +34,10 @@ void AHASCharacterBase::SetupPlayerInputComponent(UInputComponent* PlayerInputCo
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
+}
+
+UAbilitySystemComponent* AHASCharacterBase::GetAbilitySystemComponent() const
+{
+	return AbilitySystemComponent;
 }
 
