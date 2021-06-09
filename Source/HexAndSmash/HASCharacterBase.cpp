@@ -66,3 +66,10 @@ void AHASCharacterBase::ActivateAbility(int32 index)
 	AbilitySystemComponent->AbilityLocalInputPressed(index);
 }
 
+void AHASCharacterBase::CancelAbilityWithTags(const FGameplayTagContainer CancelWithTags)
+{
+	if (!IsValid(AbilitySystemComponent)) return;
+
+	AbilitySystemComponent->CancelAbilities(&CancelWithTags);
+}
+

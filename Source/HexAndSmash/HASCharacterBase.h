@@ -48,4 +48,7 @@ public:
 	// for now use the index of ability array, might want to change this later to try activate ability by class
 	UFUNCTION(BlueprintCallable, Category="Abilities")
 	void ActivateAbility(int32 index);
+
+	UFUNCTION(BlueprintCallable, Category="Abilities")
+	void CancelAbilityWithTags(const FGameplayTagContainer CancelWithTags);
 };
