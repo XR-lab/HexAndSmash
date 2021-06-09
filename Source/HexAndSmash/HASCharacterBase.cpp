@@ -73,3 +73,13 @@ void AHASCharacterBase::CancelAbilityWithTags(const FGameplayTagContainer Cancel
 	AbilitySystemComponent->CancelAbilities(&CancelWithTags);
 }
 
+float AHASCharacterBase::GetHealth() const
+{
+	if (IsValid(AttributeSet))
+	{
+		return AttributeSet->GetHealth();
+	}
+
+	return -1.0;
+}
+

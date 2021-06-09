@@ -51,4 +51,7 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category="Abilities")
 	void CancelAbilityWithTags(const FGameplayTagContainer CancelWithTags);
+
+	UFUNCTION(BlueprintPure, Category="Abilities|Attributes")
+	float GetHealth() const;
 };
