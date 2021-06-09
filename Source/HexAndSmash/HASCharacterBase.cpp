@@ -4,6 +4,7 @@
 #include "HASCharacterBase.h"
 
 #include "AbilitySystemComponent.h"
+#include "Abilities/HASAttributeSet.h"
 
 // Sets default values
 AHASCharacterBase::AHASCharacterBase()
@@ -19,6 +20,11 @@ AHASCharacterBase::AHASCharacterBase()
 void AHASCharacterBase::BeginPlay()
 {
 	Super::BeginPlay();
+
+	if (IsValid(AbilitySystemComponent))
+	{
+		AttributeSet = AbilitySystemComponent->GetSet<UHASAttributeSet>();
+	}
 	
 }
 
@@ -39,5 +45,24 @@ void AHASCharacterBase::SetupPlayerInputComponent(UInputComponent* PlayerInputCo
 UAbilitySystemComponent* AHASCharacterBase::GetAbilitySystemComponent() const
 {
 	return AbilitySystemComponent;
+}
+
+void AHASCharacterBase::GrantAbility(TSubclassOf<UGameplayAbility> AbilityClass, int32 Level, int32 InputCode)
+{
+	if (!IsValid(AbilitySystemComponent) || !IsValid(AbilityClass)) return;
+
+	UGameplayAbility* Ability = AbilityClass->GetDefaultObject<UGameplayAbility>();
+
+	if (!IsValid(Ability)) return;
+	
+	FGameplayAbilitySpec AbilitySpec(Ability, Level, InputCode);
+	AbilitySystemComponent->GiveAbility(AbilitySpec);
+}
+
+void AHASCharacterBase::ActivateAbility(int32 index)
+{
+	if (!IsValid(AbilitySystemComponent)) return;
+
+	AbilitySystemComponent->AbilityLocalInputPressed(index);
 }
 

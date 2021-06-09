@@ -5,6 +5,8 @@
 #include "AbilitySystemInterface.h"
 
 #include "CoreMinimal.h"
+
+#include "Abilities/HASAttributeSet.h"
 #include "GameFramework/Character.h"
 #include "HASCharacterBase.generated.h"
 
@@ -22,7 +24,11 @@ public:
 
 	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category = "Abilities")
 	UAbilitySystemComponent* AbilitySystemComponent;
-	
+
+protected:
+	UPROPERTY()
+	const class UHASAttributeSet* AttributeSet;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -35,4 +41,11 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
+
+	UFUNCTION(BlueprintCallable, Category="Abilities")
+	void GrantAbility(TSubclassOf<UGameplayAbility> AbilityClass, int32 Level, int32 InputCode);
+
+	// for now use the index of ability array, might want to change this later to try activate ability by class
+	UFUNCTION(BlueprintCallable, Category="Abilities")
+	void ActivateAbility(int32 index);
 };
