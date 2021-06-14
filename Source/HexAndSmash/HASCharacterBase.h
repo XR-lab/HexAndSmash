@@ -54,4 +54,12 @@ public:
 
 	UFUNCTION(BlueprintPure, Category="Abilities|Attributes")
 	float GetHealth() const;
+
+	UFUNCTION(BlueprintPure, Category="Abilities|Attributes")
+	float GetMaxHealth() const;
+	
+	UFUNCTION(BlueprintImplementableEvent)
+	void OnHealthChanged(float delta);
+
+	virtual void HandleHealthChanged(float Delta);
 };

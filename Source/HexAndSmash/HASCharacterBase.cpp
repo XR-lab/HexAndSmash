@@ -25,21 +25,18 @@ void AHASCharacterBase::BeginPlay()
 	{
 		AttributeSet = AbilitySystemComponent->GetSet<UHASAttributeSet>();
 	}
-	
 }
 
 // Called every frame
 void AHASCharacterBase::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
 }
 
 // Called to bind functionality to input
 void AHASCharacterBase::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
-
 }
 
 UAbilitySystemComponent* AHASCharacterBase::GetAbilitySystemComponent() const
@@ -81,5 +78,20 @@ float AHASCharacterBase::GetHealth() const
 	}
 
 	return -1.0;
+}
+
+float AHASCharacterBase::GetMaxHealth() const
+{
+	if (IsValid(AttributeSet))
+	{
+		return AttributeSet->GetMaxHealth();
+	}
+
+	return -1.0;
+}
+
+void AHASCharacterBase::HandleHealthChanged(float Delta)
+{
+	OnHealthChanged(Delta);
 }
 
