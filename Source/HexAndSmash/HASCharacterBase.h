@@ -51,6 +51,10 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category="Abilities")
 	void CancelAbilityWithTags(const FGameplayTagContainer CancelWithTags);
+	
+	/** Returns total time and remaining time for cooldown tags. Returns false if no active cooldowns found */
+	UFUNCTION(BlueprintCallable, Category="Abilities")
+	bool GetCooldownRemainingForTag(FGameplayTagContainer CooldownTags, float& TimeRemaining, float& CooldownDuration);
 
 	UFUNCTION(BlueprintPure, Category="Abilities|Attributes")
 	float GetHealth() const;
