@@ -78,3 +78,7 @@ DerivedDataCache/*
 
 # ignoring Riderlink for now
 /Plugins/Developer/RiderLink/*
+
+#ignoring the custom gamebuilds folder
+/GameBuilds/
+/Builds/
